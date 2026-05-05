@@ -10,6 +10,6 @@ var instance = new Razorpay({
 
 const PORT = config.PORT;
 
-app.listen(PORT, (req, res) => {
+app.listen(PORT, () => {
   console.log(`App is successfully running at PORT: ${PORT}`.bgBlue.white);
 });

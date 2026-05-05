@@ -5,10 +5,10 @@ import paymentRouter from "./routes/paymentRoute.js";
 const app = express();
 
 //middlewaes
-app.use(express.json);
+app.use(express.json());
 app.use(morgan("dev"));
 
-//outes
+//Routes
 app.use("/api/v1/payment", paymentRouter);
 
 app.get("/", (req, res) => {
