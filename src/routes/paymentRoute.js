@@ -1,8 +1,10 @@
 import express from "express";
-import { processPayment } from "../controllers/paymentController.js";
+import { getKey, processPayment } from "../controllers/paymentController.js";
 
 const router = express.Router();
 
 router.post("/process-payment", processPayment);
+
+router.get("/getkey", getKey)
 
 export default router;

@@ -3,7 +3,7 @@ import colors from "colors";
 import config from "./src/config/config.js";
 import Razorpay from "razorpay";
 
-var instance = new Razorpay({
+export const instance = new Razorpay({
   key_id: config.RAZORPAY_API_KEY,
   key_secret: config.RAZORPAY_API_SECRET,
 });

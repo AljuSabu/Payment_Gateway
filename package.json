@@ -1,7 +1,7 @@
 {
   "name": "paymentgateway",
   "version": "1.0.0",
-  "description": "RazorPy",
+  "description": "RazorPay",
   "license": "ISC",
   "author": "AljuSabu",
   "type": "module",
