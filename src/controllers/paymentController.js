@@ -1,6 +1,8 @@
 import { instance } from "../../server.js";
 import config from "../config/config.js";
+import crypto from "crypto";
 
+//Payment processing
 export const processPayment = async (req, res) => {
   try {
     // Get the amount from the frontend
@@ -26,6 +28,7 @@ export const processPayment = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Payment process initialized successfully",
+      order,
     });
   } catch (error) {
     console.log(error);
@@ -42,13 +45,57 @@ export const getKey = async (req, res) => {
   try {
     res.status(200).json({
       success: true,
-      key: config.RAZORPAY_API_KEY,
+      key: config.RAZORPAY_KEY_ID,
     });
   } catch (error) {
     console.log(error);
     res.status(500).json({
       success: false,
       message: "Failed to get Razorpay Key",
+      error,
+    });
+  }
+};
+
+//Payment Verification
+export const paymentVerification = async (req, res) => {
+  // console.log(req.body);
+  try {
+    //Destructure payment details from req.body
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
+      req.body;
+
+    //*Create a verification string
+    //This exact format must be matching Razorpay's documentation
+    //Even one character mismatch will lead to verification fail
+    const body = razorpay_order_id + "|" + razorpay_payment_id;
+
+    //Generate expected signature using razorpay secret key
+    const expectedSignature = crypto
+      .createHmac("sha256", config.RAZORPAY_KEY_SECRET)
+      .update(body.toString()) //Update the above body variable and convert into stiring
+      .digest("hex"); //Watereverr value we get , Convert it into hexadecimal
+
+    // console.log("Razopay signaturre :",razorpay_signature);
+    // console.log("Expected Signature :", expectedSignature);
+
+    // If
+    if (expectedSignature === razorpay_signature) {
+      return res.redirect(
+        `http://localhost:5173/payment/paymentSuccess?reference=${razorpay_payment_id}`,
+      );
+    } else {
+      //Payment Verification Failed
+      return res.status(400).json({
+        success: false,
+        message: "Invalid payment signature",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Payment Verification failed",
       error,
     });
   }
