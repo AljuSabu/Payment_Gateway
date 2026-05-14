@@ -1,48 +1,9 @@
-import axios from "axios";
 import { motion } from "framer-motion";
+import { useCart } from "../context/useCart";
 
-const ProductCard = ({ product }) => {
-  const checkOut = async (amount) => {
-    try {
-      const { data: orderData } = await axios.post(
-        "http://localhost:5000/api/v1/payment/process-payment",
-        { amount },
-      );
-      const { order } = orderData;
-      // console.log(order);
+const ProductCard = ({ product, onOpenCart }) => {
+  const { addToCart } = useCart();
 
-      const { data: keyData } = await axios.get(
-        "http://localhost:5000/api/v1/payment/getkey",
-      );
-      const { key } = keyData;
-      // console.log("key:",key);
-
-      // Open Razorpay Checkout
-      const options = {
-        key, // Replace with your Razorpay key_id
-        amount: "50000", // Amount is in currency subunits.
-        currency: "INR",
-        name: "Alju Sabu",
-        description: "Test Transaction",
-        order_id: order.id, // This is the order_id created in the backend, Get order id from order
-        callback_url: "http://localhost:5000/api/v1/payment/paymentVerification", // Your success URL / callback url we have to create from backend
-        prefill: { // give user details
-          name: "AljuSabu",
-          email: "alju.123@example.com",
-          contact: "12345678",
-        },
-        theme: {
-          color: "#F37254",
-        },
-      };
-
-      const rzp = new window.Razorpay(options); // creating razorpay instance
-      rzp.open();
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <>
       <motion.div
@@ -74,15 +35,16 @@ const ProductCard = ({ product }) => {
 
           <div className="mt-auto pt-4 flex items-center justify-between">
             <span className="text-xl font-bold text-white">
-              ${product.price}
+              ₹ {product.price}
             </span>
             <button
               onClick={() => {
-                checkOut(product.price);
+                addToCart(product);
+                onOpenCart();
               }}
               className="inline-flex px-3 py-2 items-center justify-center rounded-lg bg-black text-white transition-all hover:bg-gray-800 hover:scale-105 active:scale-95 dark:bg-white dark:text-black dark:hover:bg-gray-100"
             >
-              Pay Rs. {product.price}
+              Add to Cart
             </button>
           </div>
         </div>

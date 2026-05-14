@@ -3,23 +3,28 @@ import { Link } from "react-router-dom";
 import { products } from "../data/products";
 import ProductCard from "../card/ProductCard";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useOutletContext } from "react-router-dom";
 
 const Home = () => {
+  const { onOpenCart } = useOutletContext();
+
   return (
     <>
       <div className="relative min-h-screen overflow-hidden bg-[#f8fafc]">
         {/* Main Gradient Background */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.15),transparent_25%),radial-gradient(circle_at_bottom_left,rgba(168,85,247,0.15),transparent_25%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.28),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(168,85,247,0.28),transparent_30%)]" />
 
         {/* Premium Mesh Gradient */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom_right,#ffffff,rgba(248,250,252,0.9),#eef2ff)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom_right,#ffffff,#eef4ff,#f3e8ff)]" />
 
-        {/* Animated Glow Orbs */}
-        <div className="absolute -top-40 -right-20 h-120 w-120 rounded-full bg-blue-500/20 blur-3xl" />
+        {/* Blue Orb */}
+        <div className="absolute -top-40 -right-20 h-128 w-lg rounded-full bg-blue-500/35 blur-3xl animate-float" />
 
-        <div className="absolute -bottom-40 -left-20 h-120 w-120 rounded-full bg-purple-500/20 blur-3xl" />
+        {/* Purple Orb */}
+        <div className="absolute -bottom-40 -left-20 h-128 w-lg rounded-full bg-purple-500/35 blur-3xl animate-float" />
 
-        <div className="absolute left-1/2 top-1/3 h-80 w-[20rem] -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
+        {/* Cyan Glow */}
+        <div className="absolute left-1/2 top-1/3 h-96 w-[24rem] -translate-x-1/2 rounded-full bg-cyan-400/20 blur-3xl" />
 
         {/* Content */}
         <div className="relative z-10">
@@ -71,14 +76,17 @@ const Home = () => {
                     className="inline-flex w-full items-center justify-center rounded-2xl bg-black px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg shadow-gray-300"
                   >
                     Shop Now
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <ArrowRight className="ml-2 size-5" />
                   </Link>
                 </motion.div>
               </div>
             </div>
           </section>
           {/* Product Section */}
-          <section id="products" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <section
+            id="products"
+            className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8"
+          >
             <div className="mb-12 text-center md:text-left">
               <motion.span
                 initial={{ opacity: 0 }}
@@ -94,7 +102,7 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="mt-2 text-4xl font-bold text-gray-900"
+                className="mt-2 text-5xl font-extrabold text-gray-900"
               >
                 The Future of Tech
               </motion.h2>
@@ -102,7 +110,11 @@ const Home = () => {
 
             <div className="grid justify-center gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onOpenCart={onOpenCart}
+                />
               ))}
             </div>
           </section>
