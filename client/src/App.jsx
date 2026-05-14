@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
-import Cart from "./pages/Cart";
 import Products from "./pages/Products";
 import About from "./pages/About";
 import PageNotFound from "./pages/PageNotFound";
+import SuccessPage from "./pages/SuccessPage";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="products" element={<Products />} />
           <Route path="about" element={<About />} />
-          <Route path="cart" element={<Cart />} />
+          <Route path="payment/paymentSuccess" element={<SuccessPage />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
