@@ -2,9 +2,11 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, ShoppingCart, X } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
+import { useCart } from "../../context/useCart";
 
-const Navbar = () => {
+const Navbar = ({ onOpenCart }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { cartCount } = useCart();
 
   const navitems = [
     { name: "Home", path: "/" },
@@ -44,8 +46,16 @@ const Navbar = () => {
 
             {/* Right Icons */}
             <div className="flex items-center gap-2 sm:gap-4">
-              <button className="hidden sm:block rounded-full p-2 text-gray-400 hover:bg-zinc-900 hover:text-white transition-colors">
-                <ShoppingCart className="size-5" />
+              <button
+                onClick={onOpenCart}
+                className="relative hidden sm:block rounded-full p-2 text-gray-400 hover:bg-zinc-900 hover:text-white transition-colors"
+              >
+                <ShoppingCart className="size-6" />
+                {cartCount > 0 && (
+                  <span className="absolute -right-1 -top-1 flex h-5 min-w-5 px-1 items-center justify-center rounded-full bg-blue-600 text-xs text-white">
+                    {cartCount > 9 ? "9+" : cartCount}
+                  </span>
+                )}
               </button>
 
               <button

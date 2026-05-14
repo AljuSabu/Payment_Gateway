@@ -1,9 +1,12 @@
 import { Helmet } from "react-helmet";
-import Navbar from "./Navbar";
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import Navbar from "./Navbar";
 import Footer from "./Footer";
+import CartDrawer from "../../pages/CartDrawer";
 
 const Layout = ({ description, keywords, author, title }) => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
   return (
     <>
       <Helmet>
@@ -16,13 +19,15 @@ const Layout = ({ description, keywords, author, title }) => {
       </Helmet>
 
       <div className="min-h-screen pt-16 overflow-hidden">
-        <Navbar />
+        <Navbar onOpenCart={() => setIsCartOpen(true)} />
 
         <main className="grow">
-          <Outlet />
+          <Outlet context={{ onOpenCart: () => setIsCartOpen(true) }} />
         </main>
 
         <Footer />
+
+        <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       </div>
     </>
   );
