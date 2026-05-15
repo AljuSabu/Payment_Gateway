@@ -59,7 +59,7 @@ const SuccessPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white py-20">
+    <div className="min-h-screen bg-linear-to-b from-gray-300/70 via-white to-gray-300/70 py-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         {/* Success Header */}
         <div className="mb-12 text-center">
@@ -96,7 +96,7 @@ const SuccessPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm"
+            className="rounded-3xl border border-gray-300 bg-white p-8 shadow-sm"
           >
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div className="space-y-5">
@@ -160,7 +160,7 @@ const SuccessPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 }}
-            className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm"
+            className="rounded-3xl border border-gray-300 bg-white p-8 shadow-sm"
           >
             <h3 className="mb-6 text-2xl font-black text-gray-900">
               Payment Summary
@@ -220,7 +220,7 @@ const SuccessPage = () => {
               {paymentInfo.items?.map((item) => (
                 <div
                   key={item.id}
-                  className="flex gap-4 rounded-2xl border border-gray-100 bg-gray-50 p-4 transition-all hover:border-gray-200 hover:bg-white"
+                  className="flex gap-4 rounded-2xl border border-gray-200 bg-gray-100 p-4 transition-all hover:border-gray-300 hover:bg-white"
                 >
                   <div className="h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-gray-100">
                     <img
@@ -254,7 +254,7 @@ const SuccessPage = () => {
 
             {/* ACTIONS */}
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <button className="inline-flex flex-1 items-center justify-center rounded-2xl border border-gray-200 bg-white px-6 py-3 text-sm font-bold text-gray-900 transition-all hover:bg-gray-100">
+              <button className="inline-flex flex-1 items-center justify-center rounded-2xl border border-gray-300 bg-white px-6 py-3 text-sm font-bold text-gray-900 transition-all hover:bg-gray-200">
                 <Download className="mr-2 h-4 w-4" />
                 Download Receipt
               </button>
@@ -266,7 +266,7 @@ const SuccessPage = () => {
                 className="inline-flex flex-1 items-center justify-center rounded-2xl bg-black px-6 py-3 text-sm font-bold text-white transition-all hover:bg-gray-800"
               >
                 Continue Shopping
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 mt-0.5 h-4 w-4" />
               </button>
             </div>
           </motion.div>
