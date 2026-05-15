@@ -98,6 +98,21 @@ const Navbar = ({ onOpenCart }) => {
                     {item.name}
                   </NavLink>
                 ))}
+                <button
+                  onClick={() => {
+                    onOpenCart();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="font-medium flex items-center justify-center gap-2 py-2 px-4 rounded transition-colors text-gray-300 hover:bg-zinc-900 hover:text-white"
+                >
+                  <ShoppingCart className="size-5" />
+                  Cart
+                  {cartCount > 0 && (
+                    <span className="flex h-5 min-w-5 px-1 items-center justify-center rounded-full bg-blue-600 text-xs text-white">
+                      {cartCount > 9 ? "9+" : cartCount}
+                    </span>
+                  )}
+                </button>
               </div>
             </motion.div>
           )}

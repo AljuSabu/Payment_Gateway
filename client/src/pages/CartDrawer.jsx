@@ -118,9 +118,13 @@ const CartDrawer = ({ isOpen, onClose }) => {
 
                         <div className="flex flex-1 flex-col">
                           <div className="flex justify-between">
-                            <h3 className="font-bold">{item.name}</h3>
-
-                            <span className="font-bold">₹ {item.price}</span>
+                            <h3 className="font-bold text-sm md:text-base">
+                              {item.name}
+                            </h3>
+                            
+                            <span className="font-bold text-sm md:text-base">
+                              ₹{(item.price * item.quantity).toFixed(2)}
+                            </span>
                           </div>
 
                           <div className="mt-auto flex items-center justify-between">
