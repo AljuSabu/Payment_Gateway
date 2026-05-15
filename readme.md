@@ -8,10 +8,80 @@ A modern full-stack e-commerce web application built using the MERN stack with R
 
 🔗 **Live Website:** [live@](https://payment-gateway-pearl.vercel.app/)
 
+---
+
+# ☁️ Deployment Architecture
+
+This project is deployed using a modern full-stack hosting setup:
+
+## Frontend Hosting
+
+The frontend React application is deployed on **Vercel**.
+
+- Fast global CDN delivery
+- Automatic deployments from GitHub
+- Optimized React/Vite hosting
+
+🔗 Frontend Live URL: [@vercel](https://payment-gateway-pearl.vercel.app/)
+
+---
+
+## Backend Hosting
+
+The Express.js backend server is deployed on **Render**.
+
+Features:
+
+- REST API hosting
+- Razorpay payment processing
+- Secure environment variable management
+- CORS-enabled API communication
+
+🔗 Backend API URL: [@render](https://payment-gateway-ay0v.onrender.com/)
+
+---
+
+## Payment Gateway
+
+Payments are securely handled using **Razorpay** integration.
+
+Features included:
+
+- Order creation
+- Payment verification
+- Secure transaction handling
+- Redirect-based success flow
+
+---
+
+## Deployment Flow
+
+```text
+Frontend (Vercel)
+        ↓
+Backend API (Render)
+        ↓
+Razorpay Payment Gateway
+```
+
+---
+
+## Environment Variables
+
+Sensitive credentials are securely managed using environment variables on the hosting platforms.
+
+Examples:
+
+```env
+PORT=5000
+RAZORPAY_KEY_ID=YOUR_KEY
+RAZORPAY_KEY_SECRET=YOUR_SECRET
+FRONTEND_URL=https://payment-gateway-pearl.vercel.app
+```
+
 # 📸 Project Screenshots
 
 ## 🏠 Home Page
-
 
 ![Home Page](./public/home.png)
 
@@ -19,13 +89,11 @@ A modern full-stack e-commerce web application built using the MERN stack with R
 
 ## 🛍️ Products Page
 
-
 ![Products Page](./public/products.png)
 
 ---
 
 ## ℹ️ About Page
-
 
 ![About Page](./public/about.png)
 
@@ -33,14 +101,11 @@ A modern full-stack e-commerce web application built using the MERN stack with R
 
 ## 🛒 Cart Drawer
 
-
 ![Cart Drawer](./public/cart.png)
-
 
 ---
 
 ## 💳 Razorpay Checkout
-
 
 ![Payment Gateway](./public/success.png)
 
