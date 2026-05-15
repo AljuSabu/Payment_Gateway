@@ -9,14 +9,16 @@ const CartDrawer = ({ isOpen, onClose }) => {
   const checkOut = async (amount) => {
     try {
       const { data: orderData } = await axios.post(
-        "http://localhost:5000/api/v1/payment/process-payment",
+        "https://payment-gateway-ay0v.onrender.com/api/v1/payment/process-payment",
+        // "http://localhost:5000/api/v1/payment/process-payment",
         { amount, items: cart },
       );
       const { order } = orderData;
       // console.log(order);
 
       const { data: keyData } = await axios.get(
-        "http://localhost:5000/api/v1/payment/getkey",
+        "https://payment-gateway-ay0v.onrender.com/api/v1/payment/getkey",
+        // "http://localhost:5000/api/v1/payment/getkey",
       );
       const { key } = keyData;
       // console.log("key:",key);
@@ -30,7 +32,8 @@ const CartDrawer = ({ isOpen, onClose }) => {
         description: "Test Transaction",
         order_id: order.id, // This is the order_id created in the backend, Get order id from order
         callback_url:
-          "http://localhost:5000/api/v1/payment/paymentVerification", // Your success URL / callback url we have to create from backend
+          "https://payment-gateway-ay0v.onrender.com/api/v1/payment/paymentVerification",
+        // "http://localhost:5000/api/v1/payment/paymentVerification", // Your success URL / callback url we have to create from backend
         prefill: {
           // give user details
           name: "AljuSabu",
@@ -121,7 +124,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
                             <h3 className="font-bold text-sm md:text-base">
                               {item.name}
                             </h3>
-                            
+
                             <span className="font-bold text-sm md:text-base">
                               ₹{(item.price * item.quantity).toFixed(2)}
                             </span>

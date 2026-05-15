@@ -113,7 +113,8 @@ export const paymentVerification = async (req, res) => {
 
       // Redirect to the frontend success page with payment data as a query parameter
       return res.redirect(
-        `http://localhost:5173/payment/paymentSuccess?data=${encodedPaymentData}`,
+        `https://payment-gateway-pearl.vercel.app/payment/paymentSuccess?data=${encodedPaymentData}`,
+        // `http://localhost:5173/payment/paymentSuccess?data=${encodedPaymentData}`, // Use this for local development
       );
     } else {
       //Payment Verification Failed
