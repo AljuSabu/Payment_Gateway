@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: "https://payment-gateway-pearl.vercel.app/",
+    origin: "https://payment-gateway-pearl.vercel.app",
     credentials: true,
   }),
 );
